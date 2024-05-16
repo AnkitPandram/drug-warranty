@@ -1,0 +1,25 @@
+[package]
+name = "drug-warranty"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+soroban-sdk = { git = "https://github.com/stellar/soroban-sdk", branch = "main" }
+soroban-auth = { git = "https://github.com/stellar/soroban-auth", branch = "main" }
+soroban-env-host = { git = "https://github.com/stellar/soroban-env-host", branch = "main" }
+
+[features]
+default = []
+test-utils = ["soroban-sdk/test-utils", "soroban-auth/test-utils", "soroban-env-host/test-utils"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "drug-auth-test"
+path = "tests/drug-auth-test.rs"
+required-features = ["test-utils"]
+
+
